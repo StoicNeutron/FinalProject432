@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="module" src="/scheduler_script.js" defer></script>
+    <title>Scheduler</title>
+</head>
+<body>
+    <div class="main_content">
+        <div class="left_content">
+            <div class="scheduler">
+                <h4>Scheduler</h4>
+                <div class="scheduler_elements">
+                    <div style="flex-direction: column;">
+                        <input type="text" id="myCalendar" placeholder="Select a date">
+                    </div>
+                    <div class="scheduler_elements2">
+                        <p style="font-size: 15px;">Select DJ:</p>
+                        <div class="profile_picker">
+                            <button id="p1" style="border: none; background-color: transparent; cursor: pointer;">
+                                <a href="/scheduler/0"><img src="/profile1.png" alt="profile picture"></a>
+                            </button>
+                            <button id="p2" style="border: none; background-color: transparent; cursor: pointer;">
+                                <a href="/scheduler/1"><img src="/profile2.png" alt="profile picture"></a>
+                            </button>
+                            <button id="p3" style="border: none; background-color: transparent; cursor: pointer;">
+                                <a href="/scheduler/2"><img src="/profile3.png" alt="profile picture"></a>
+                            </button>
+                            <button id="p4" style="border: none; background-color: transparent; cursor: pointer;">
+                                <a href="/scheduler/3"><img src="/profile4.png" alt="profile picture"></a>
+                            </button>
+                            <button id="p5" style="border: none; background-color: transparent; cursor: pointer;">
+                                <a href="/scheduler/4"><img src="/profile5.png" alt="profile picture"></a>
+                            </button>
+                        </div>
+                        <div class="DJ_info">
+                            <table style="font-size: 15px;margin-top: 40px;">
+                                <tr>
+                                    <td>Name</td>
+                                    <td id="DJ_name">: <%= currentDJ?.name || " " %></td>
+                                </tr>
+                                <tr>
+                                    <td>Experience</td>
+                                    <td id="DJ_experience">: <%= currentDJ?.experience || " " %></td>
+                                </tr>
+                                <tr>
+                                    <td>Rated</td>
+                                    <td id="DJ_rated">: <%= currentDJ?.rated || " " %></td>
+                                </tr>
+                                <tr>
+                                    <td>Assigned Date</td>
+                                    <td id="DJ_assignedDate">: <%= currentDJ?.assignedDate || " " %></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <button class="scheduler_buttons" id="reset_button" type="button"
+                            onclick="alert('RESET!')">RESET</button>
+                        <button class="scheduler_buttons" id="confirm_button" type="button">CONFIRM</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

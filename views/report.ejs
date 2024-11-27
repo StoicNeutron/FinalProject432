@@ -1,0 +1,43 @@
+<body>
+
+    <div class="main_content">
+        <div class="left_content">
+            <div class="report">
+                <h4>Report</h4>
+                <div class="report_elements">
+                    <div class="profile_picker" style="display: flex;">
+                        <button id="RP1" class="profile" style="border: none; background-color: transparent; cursor: pointer;">
+                            <img src="/profile1.png" alt="profile picture">
+                        </button>
+                        <button id="RP2" class="profile" style="border: none; background-color: transparent; cursor: pointer;">
+                            <img src="/profile2.png" alt="profile picture">
+                        </button>
+                        <button id="RP3" class="profile" style="border: none; background-color: transparent; cursor: pointer;">
+                            <img src="/profile3.png" alt="profile picture">
+                        </button>
+                        <button id="RP4" class="profile" style="border: none; background-color: transparent; cursor: pointer;">
+                            <img src="/profile4.png" alt="profile picture">
+                        </button>
+                        <button id="RP5" class="profile" style="border: none; background-color: transparent; cursor: pointer;">
+                            <img src="/profile5.png" alt="profile picture">
+                        </button>
+                        <script>
+                            function emphasize(event) {
+                                document.querySelectorAll(".profile_picker img").forEach(img => {
+                                    img.classList.remove("clicked");
+                                });
+                                event.target.classList.add("clicked");
+                            }
+                            document.querySelectorAll(".profile_picker img").forEach(img => {
+                                img.addEventListener("click", emphasize);
+                            });
+                        </script>
+                    </div>
+                    <div class="report_info">
+                        <div id="chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

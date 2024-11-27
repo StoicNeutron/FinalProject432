@@ -1,0 +1,164 @@
+<body>
+
+    <div class="main_content">
+        <div class="left_content">
+            <div class="now_playing">
+                <h4>Now Playing</h4>
+                <div class="now_playing_elements">
+                    <button id="playButton">
+                        <img id="buttonImage" src="/play.png" alt="Play/Pause Button">
+                    </button>
+                    <audio id="audioPlayer" autoplay loop>
+                        <source src="/expresso.mp3" type="audio/mpeg">
+                    </audio>
+                    <p>Expresso - Sabrina Carpenter</p>
+                    <img id="sound_animated" src=""
+                        style="height: 30px; width:auto; margin-left: 10px; margin-top: 13px">
+                </div>
+                <hr style="border: 0.5px solid black; width: 80%; margin: 20px 0;">
+                <p><b>Queue:</b></p>
+                <ol id="songList" style="list-style: none;">
+                    <li style="color:grey">Reckless - Madison Beer</li>
+                    <li style="color:grey">Dandelion - Ruth B.</li>
+                    <li id="expandList" style="color:grey; cursor: pointer;"><a href="javascript:void(0);">more...</a>
+                    </li>
+                </ol>
+            </div>
+            <div class="scheduler">
+                <h4><a href="/scheduler">Scheduler</a></h4>
+                <div class="scheduler_elements">
+                    <div style="flex-direction: column;">
+                        <input type="text" id="myCalendar" placeholder="Select a date">
+                    </div>
+                    <div class="scheduler_elements2">
+                        <p style="font-size: 15px;">Select DJ:</p>
+                        <div class="profile_picker">
+                            <button id="p1" style="border: none; background-color: transparent; cursor: pointer;">
+                                <img src="/profile1.png" alt="profile picture">
+                            </button>
+                            <button id="p2" style="border: none; background-color: transparent; cursor: pointer;">
+                                <img src="/profile2.png" alt="profile picture">
+                            </button>
+                            <button id="p3" style="border: none; background-color: transparent; cursor: pointer;">
+                                <img src="/profile3.png" alt="profile picture">
+                            </button>
+                            <button id="p4" style="border: none; background-color: transparent; cursor: pointer;">
+                                <img src="/profile4.png" alt="profile picture">
+                            </button>
+                            <button id="p5" style="border: none; background-color: transparent; cursor: pointer;">
+                                <img src="/profile5.png" alt="profile picture">
+                            </button>
+                        </div>
+                        <div class="DJ_info">
+                            <table style="font-size: 15px;margin-top: 40px;">
+                                <tr>
+                                    <td>Name</td>
+                                    <td id="DJ_name">:</td>
+                                </tr>
+                                <tr>
+                                    <td>Experience</td>
+                                    <td id="DJ_experience">:</td>
+                                </tr>
+                                <tr>
+                                    <td>Rated</td>
+                                    <td id="DJ_rated">:</td>
+                                </tr>
+                                <tr>
+                                    <td>Assigned Date</td>
+                                    <td id="DJ_assignedDate">:</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <button class="scheduler_buttons" id="reset_button" type="button"
+                            onclick="alert('RESET!')">RESET</button>
+                        <button class="scheduler_buttons" id="confirm_button" type="button" onclick="">CONFIRM</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="report">
+                <h4><a href="/report">Report</a></h4>
+                <div class="report_elements">
+                    <div class="profile_picker" style="display: flex;">
+                        <button id="RP1" class="profile"
+                            style="border: none; background-color: transparent; cursor: pointer;">
+                            <img src="/profile1.png" alt="profile picture">
+                        </button>
+                        <button id="RP2" class="profile"
+                            style="border: none; background-color: transparent; cursor: pointer;">
+                            <img src="/profile2.png" alt="profile picture">
+                        </button>
+                        <button id="RP3" class="profile"
+                            style="border: none; background-color: transparent; cursor: pointer;">
+                            <img src="/profile3.png" alt="profile picture">
+                        </button>
+                        <button id="RP4" class="profile"
+                            style="border: none; background-color: transparent; cursor: pointer;">
+                            <img src="/profile4.png" alt="profile picture">
+                        </button>
+                        <button id="RP5" class="profile"
+                            style="border: none; background-color: transparent; cursor: pointer;">
+                            <img src="/profile5.png" alt="profile picture">
+                        </button>
+                        <script>
+                            function emphasize(event) {
+                                document.querySelectorAll(".profile_picker img").forEach(img => {
+                                    img.classList.remove("clicked");
+                                });
+                                event.target.classList.add("clicked");
+                            }
+                            document.querySelectorAll(".profile_picker img").forEach(img => {
+                                img.addEventListener("click", emphasize);
+                            });
+                        </script>
+                    </div>
+                    <div class="report_info">
+                        <div id="chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right_content">
+            <div class="profile_content" style="display: flex; flex-direction: column; align-items: center; margin: 0 auto; width: fit-content; padding: 20px;">
+                <img src="/profile.png" style="width: 60px; height: 60px; margin-bottom: 10px;">
+                <h4 style="margin-bottom: 10px;">LOGIN</h4>
+                <input type="text" id="username" placeholder="Username" required style="width: 80%; padding: 5px; margin-bottom: 10px;">
+                <input type="password" id="password" placeholder="Password" required style="width: 80%; padding: 5px; margin-bottom: 10px;">
+                <button id="login_button" style="padding: 5px 10px; cursor: pointer; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">Login</button>
+            </div>                      
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginButton = document.getElementById('login_button');
+            const usernameInput = document.getElementById('username');
+    
+            loginButton.addEventListener('click', async () => {
+                const username = usernameInput.value;
+    
+                try {
+                    const response = await fetch('/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username }),
+                    });
+    
+                    const result = await response.json();
+    
+                    if (response.ok) {
+                        alert(`Welcome, ${result.username}`);
+                    } else {
+                        alert(result.message || "Login failed. Please try again.");
+                    }
+                } catch (err) {
+                    console.error("Error during login:", err);
+                    alert("An error occurred. Please try again later.");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
